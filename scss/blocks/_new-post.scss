@@ -1,0 +1,25 @@
+.new-post {
+
+    & > *:not(:last-child) {
+        margin-bottom: 40px;
+    }
+    
+    &__title {
+        margin-top: 20px;
+        height: 60px;
+        @extend %input-styles;
+    }
+    &__text {
+        @extend %input-styles;
+        height: 250px;
+        resize: none;
+    }
+    &__btn {
+
+        @extend %input-styles;
+        padding: 0;
+        height: 60px;
+        color: #fff;
+        background-color: $blue-color;
+    }
+}
