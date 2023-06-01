@@ -15,6 +15,7 @@
     <title>Blog</title>
   </head>
   <body>
+    <img class="background" src="img/back.jpg" alt="">
     <div class="blog">
       <h1 style="text-align: center;">Blog App</h1>
 
@@ -28,15 +29,15 @@
             placeholder="Title"
           />
           <textarea
-            name=""
             id="newPostText"
+            class="new-post__text"
             cols="30"
             rows="10"
             placeholder="Write a post"
           ></textarea>
-          <button id="newPostBtn" class="new-post__btn">Post</button>
+          <button id="newPostBtn" class="new-post__btn">Publish</button>
         </section>
-        <section class="posts-section">
+        <section class="posts-list">
           <h2 class="posts-header">Posts list</h2>
           <acticle id="posts" class="posts">Empty</article>
         </section>

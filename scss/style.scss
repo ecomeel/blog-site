@@ -1,9 +1,10 @@
 @import "reset";
 @import "vars";
+@import "templates";
 
 @import "inits";
 @import "commons";
 
-textarea {
-    display: block;
-}
+@import "blocks/new-post";
+@import "blocks/posts-list";
+@import "blocks/post";
