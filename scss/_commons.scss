@@ -1,4 +1,11 @@
 .container {
     width: 1000px;
     margin: 0 auto;
+    padding-top: 50px;
+
+    display: flex;
+    column-gap: 100px;
+    & > * {
+        width: 450px;
+    }
 }

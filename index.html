@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/blog-icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/blog-icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Blog</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="blog">
-        <div class="container">
-            <section class="new-post"></section>
-            <section class="blog-feed"></section>
-        </div>
+      <div class="container">
+        <section class="new-post">
+          <h2 class="new-post__header">New post</h2>
+          <input
+            id="newPostTitleInput"
+            class="new-post__title"
+            type="text"
+            placeholder="Title"
+          />
+          <textarea
+            name=""
+            id="newPostText"
+            cols="30"
+            rows="10"
+            placeholder="Write a post"
+          ></textarea>
+          <button id="newPostBtn" class="new-post__btn">Post</button>
+        </section>
+        <section class="posts-section">
+          <h2 class="posts-header">Posts list</h2>
+          <div id="posts" class="posts">
+            Empty
+          </div>
+        </section>
+      </div>
     </div>
-</body>
+    <script src="js/index.js"></script>
+  </body>
 </html>
