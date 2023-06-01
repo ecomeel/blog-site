@@ -8,6 +8,7 @@
     &__date {
         font-size: $small-text;
         line-height: 30.26px;
+        border-bottom: 3px solid rgba(255, 255, 255, .5)
     }
     &__title {
         font-weight: 700;

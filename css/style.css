@@ -110,6 +110,16 @@ h1 {
   width: 450px;
 }
 
+.error {
+  border: 2px solid red;
+}
+
+.red-color {
+  color: red;
+  font-size: 40px;
+  letter-spacing: 3px;
+}
+
 .new-post > *:not(:last-child, :first-child) {
   margin-bottom: 40px;
 }
@@ -128,6 +138,7 @@ h1 {
 }
 .new-post__btn:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .posts > *:not(:last-child) {
@@ -140,6 +151,7 @@ h1 {
 .post__date {
   font-size: 25px;
   line-height: 30.26px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
 }
 .post__title {
   font-weight: 700;
