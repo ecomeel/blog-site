@@ -1,15 +1,51 @@
-let postTitle = '';
+const ERROR_EMPTY_TITLE = 'Empty title name!';
+const ERROR_EMPTY_TEXTAREA = 'Empty textarea!';
+const ERROR_LARGE_TITLE = 'The title is more than 100 characters';
+const ERROR_LARGE_TEXTAREA = 'The text is more than 200 characters';
+const ERROR_CLASSNAME = 'error';
+const EMPTY_POSTLIST_MESSAGE = 'Empty';
+
 const posts = [];
 
+const newPostNode = document.getElementById('newPost')
 const newPostTitleInputNode = document.getElementById('newPostTitleInput');
 const newPostTextNode = document.getElementById('newPostText');
 const newPostBtnNode = document.getElementById('newPostBtn');
 const postsNode = document.getElementById('posts');
 
+const errorMessage = document.createElement('p');
+errorMessage.className = 'red-color'
+
 const getPostFromUser = () => {
-    const time = new Date().toLocaleString();
+    const time = new Date().toLocaleString().slice(0, -3);
     const title = newPostTitleInputNode.value;
     const text = newPostTextNode.value;
+
+    if (newPostTitleInputNode.value === '') {
+        errorMessage.innerText = ERROR_EMPTY_TITLE;
+        newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
+        newPostNode.appendChild(errorMessage);
+        return;
+    } else if (newPostTitleInputNode.value.length > 100) {
+        errorMessage.innerText = ERROR_LARGE_TITLE;
+        newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
+        newPostNode.appendChild(errorMessage);
+        return;
+    } else if (newPostTextNode.value === '') {
+        newPostTitleInputNode.classList.remove(ERROR_CLASSNAME);
+        newPostTextNode.classList.add(ERROR_CLASSNAME);
+        errorMessage.innerText = ERROR_EMPTY_TEXTAREA;
+        newPostNode.appendChild(errorMessage);
+        return;
+    } else if (newPostTextNode.value.length > 200) {
+        errorMessage.innerText = ERROR_LARGE_TEXTAREA;
+        newPostTextNode.classList.add(ERROR_CLASSNAME);
+        newPostNode.appendChild(errorMessage);
+        return;
+    }
+    newPostTextNode.classList.remove(ERROR_CLASSNAME);
+    errorMessage.innerText = '';
+
     return {
         time,
         title,
@@ -18,7 +54,7 @@ const getPostFromUser = () => {
 }
 
 const renderPosts = () => {
-    if (postsNode.innerText == 'Empty') postsNode.innerText = '';
+    if (postsNode.innerText == EMPTY_POSTLIST_MESSAGE) postsNode.innerText = '';
 
     let postsHTML = '';
     const posts = getPosts();
@@ -44,13 +80,17 @@ const getPosts = () => {
     return posts;
 }
 
+const clearOldData = () => {
+    newPostTitleInputNode.value = '';
+    newPostTextNode.value = '';
+}
+
 const newPostHandler = () => {
     const postFromUser = getPostFromUser();
-
     addPost(postFromUser);
-
     renderPosts();
-    console.log(posts)
+    clearOldData();
+
 }
 
 newPostBtnNode.addEventListener('click', newPostHandler);
