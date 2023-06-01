@@ -53,17 +53,18 @@ a {
   text-decoration: none;
 }
 
-.new-post__btn, .new-post__text, .new-post__title {
+.post, .new-post__btn, .new-post__text, .new-post__title {
   padding: 10px 20px;
   font: inherit;
   box-sizing: border-box;
   width: 100%;
   border: none;
   border-radius: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  color: rgba(51, 54, 51, 0.8);
 }
 
 body {
-  padding-top: 30px;
   width: 100%;
   height: 100%;
   scroll-behavior: smooth;
@@ -72,14 +73,31 @@ body {
   font-weight: 400;
   line-height: 38.73px;
   color: #fff;
-  background-image: url("../img/back.jpg");
-  background-size: cover;
-  background-position: 50% 50%;
 }
 
-h1, h2 {
+.background {
+  object-fit: cover;
+  object-position: 50%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+h1,
+h2 {
   font-weight: 700;
-  margin-bottom: 40px;
+  font-size: 40px;
+  line-height: 48.41px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  margin-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
 }
 
 .container {
@@ -92,11 +110,10 @@ h1, h2 {
   width: 450px;
 }
 
-.new-post > *:not(:last-child) {
+.new-post > *:not(:last-child, :first-child) {
   margin-bottom: 40px;
 }
 .new-post__title {
-  margin-top: 20px;
   height: 60px;
 }
 .new-post__text {
@@ -108,4 +125,26 @@ h1, h2 {
   height: 60px;
   color: #fff;
   background-color: #0094FF;
+}
+.new-post__btn:hover {
+  opacity: 0.8;
+}
+
+.posts > *:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.post > *:not(:last-child) {
+  margin-bottom: 15px;
+}
+.post__date {
+  font-size: 25px;
+  line-height: 30.26px;
+}
+.post__title {
+  font-weight: 700;
+}
+.post__text {
+  font-size: 25px;
+  line-height: 30.26px;
 }/*# sourceMappingURL=style.css.map */

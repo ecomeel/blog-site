@@ -1,0 +1,19 @@
+.post {
+    @extend %input-styles;
+
+    & > *:not(:last-child) {
+        margin-bottom: 15px;
+    }
+
+    &__date {
+        font-size: $small-text;
+        line-height: 30.26px;
+    }
+    &__title {
+        font-weight: 700;
+    }
+    &__text {
+        font-size: $small-text;
+        line-height: 30.26px;
+    }
+}

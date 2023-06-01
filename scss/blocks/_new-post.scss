@@ -1,11 +1,10 @@
 .new-post {
 
-    & > *:not(:last-child) {
+    & > *:not(:last-child, :first-child) {
         margin-bottom: 40px;
     }
     
     &__title {
-        margin-top: 20px;
         height: 60px;
         @extend %input-styles;
     }
@@ -15,11 +14,14 @@
         resize: none;
     }
     &__btn {
-
         @extend %input-styles;
         padding: 0;
         height: 60px;
         color: #fff;
         background-color: $blue-color;
+
+        &:hover {
+            opacity: .8;
+        }
     }
 }
