@@ -118,10 +118,11 @@ h1 {
   color: red;
   font-size: 40px;
   letter-spacing: 3px;
+  text-align: center;
 }
 
 .new-post > *:not(:last-child, :first-child) {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .new-post__title {
   height: 60px;
