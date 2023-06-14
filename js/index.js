@@ -19,8 +19,34 @@ const postsNode = document.getElementById('posts');
 const errorMessage = document.createElement('p');
 errorMessage.className = ERROR_CLASSNAME_COLOR;
 
+const isNumLessTen = (num) => {
+    return num < 10;
+}
+
+const setLeadingZero = (nums) => {
+    for (let i=0; i<nums.length; i++){
+        if (isNumLessTen(nums[i])) {
+            nums[i] = `0${nums[i]}`;
+        }
+    }
+
+    return nums;
+}
+
+const getTime = () => {
+    const day = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+    const hours = new Date().getHours();
+    const minutes = new Date().getMinutes();
+
+    const correctedTime = setLeadingZero([hours, minutes, day, month]);
+    const fullTime = `${correctedTime[0]}:${correctedTime[1]} ${correctedTime[2]}.${correctedTime[3]}.${year}`;
+    return fullTime;
+}
+
 const getPostFromUser = () => {
-    const time = new Date().toLocaleString().slice(0, -3);
+    const time = getTime();
     const title = newPostTitleInputNode.value;
     const text = newPostTextNode.value;
 
@@ -57,6 +83,9 @@ const getPostFromUser = () => {
     }
 }
 
+// const isPostCorrect = () => {
+
+// }
 
 const renderPosts = () => {
     if (postsNode.innerText == EMPTY_POSTLIST_MESSAGE) postsNode.innerText = '';

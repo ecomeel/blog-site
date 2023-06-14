@@ -152,12 +152,14 @@ h1 {
 .post__date {
   font-size: 25px;
   line-height: 30.26px;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5) 2;
 }
 .post__title {
   font-weight: 700;
+  width: 100%;
 }
 .post__text {
   font-size: 25px;
   line-height: 30.26px;
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */
