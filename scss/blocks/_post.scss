@@ -13,10 +13,12 @@
     &__title {
         font-weight: 700;
         width: 100%;
+        word-wrap: break-word;
     }
     &__text {
         font-size: $small-text;
         line-height: 30.26px;
         width: 100%;
+        word-wrap: break-word;
     }
 }

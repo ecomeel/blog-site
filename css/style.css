@@ -157,9 +157,11 @@ h1 {
 .post__title {
   font-weight: 700;
   width: 100%;
+  word-wrap: break-word;
 }
 .post__text {
   font-size: 25px;
   line-height: 30.26px;
   width: 100%;
+  word-wrap: break-word;
 }/*# sourceMappingURL=style.css.map */
