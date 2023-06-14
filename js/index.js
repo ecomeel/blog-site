@@ -49,33 +49,6 @@ const getPostFromUser = () => {
     const time = getTime();
     const title = newPostTitleInputNode.value;
     const text = newPostTextNode.value;
-
-    if (newPostTitleInputNode.value.length === 0) {
-        errorMessage.innerText = ERROR_EMPTY_TITLE;
-        newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
-        newPostNode.appendChild(errorMessage);
-        return;
-    } else if (newPostTitleInputNode.value.length > TITLE_VALIDATION_LIMIT) {
-        errorMessage.innerText = ERROR_LARGE_TITLE;
-        newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
-        newPostNode.appendChild(errorMessage);
-        return;
-    } else if (newPostTextNode.value.length === 0) {
-        newPostTitleInputNode.classList.remove(ERROR_CLASSNAME);
-        newPostTextNode.classList.add(ERROR_CLASSNAME);
-        errorMessage.innerText = ERROR_EMPTY_TEXTAREA;
-        newPostNode.appendChild(errorMessage);
-        return;
-    } else if (newPostTextNode.value.length > TEXTAREA_VALIDATION_LIMIT) {
-        errorMessage.innerText = ERROR_LARGE_TEXTAREA;
-        newPostTextNode.classList.add(ERROR_CLASSNAME);
-        newPostNode.appendChild(errorMessage);
-        return;
-    }
-    newPostTextNode.classList.remove(ERROR_CLASSNAME);
-    newPostTitleInputNode.classList.remove(ERROR_CLASSNAME);
-    errorMessage.innerText = '';
-
     return {
         time,
         title,
@@ -83,9 +56,45 @@ const getPostFromUser = () => {
     }
 }
 
-// const isPostCorrect = () => {
+const isFieldEmpty = (text) => {
+    return (text) ? false : true;
+}
 
-// }
+const clearOldError = () => {
+    newPostTextNode.classList.remove(ERROR_CLASSNAME);
+    newPostTitleInputNode.classList.remove(ERROR_CLASSNAME);
+    errorMessage.innerText = '';
+}
+
+const isPostCorrect = (title, text) => {
+    clearOldError();
+    if (isFieldEmpty(title)) {
+        errorMessage.innerText = ERROR_EMPTY_TITLE;
+        newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
+        newPostNode.appendChild(errorMessage);
+        return false
+    }
+    if (title.length > TITLE_VALIDATION_LIMIT) {
+        errorMessage.innerText = ERROR_LARGE_TITLE;
+        newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
+        newPostNode.appendChild(errorMessage);
+        return false
+    }
+    if (isFieldEmpty(text)) {
+        errorMessage.innerText = ERROR_EMPTY_TEXTAREA;
+        newPostTitleInputNode.classList.remove(ERROR_CLASSNAME);
+        newPostTextNode.classList.add(ERROR_CLASSNAME);
+        newPostNode.appendChild(errorMessage);
+        return false
+    }
+    if (text.length > TEXTAREA_VALIDATION_LIMIT) {
+        errorMessage.innerText = ERROR_LARGE_TEXTAREA;
+        newPostTextNode.classList.add(ERROR_CLASSNAME);
+        newPostNode.appendChild(errorMessage);
+        return false
+    }
+    return true;
+}
 
 const renderPosts = () => {
     if (postsNode.innerText == EMPTY_POSTLIST_MESSAGE) postsNode.innerText = '';
@@ -121,6 +130,11 @@ const clearOldData = () => {
 
 const newPostHandler = () => {
     const postFromUser = getPostFromUser();
+
+    if (!isPostCorrect(postFromUser.title, postFromUser.text)) {
+        return
+    }
+
     addPost(postFromUser);
     renderPosts();
     clearOldData();
