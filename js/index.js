@@ -79,6 +79,31 @@ const isFieldEmpty = (text) => {
     return (text) ? false : true;
 }
 
+const isTextMoreLimit = (text, limit) => {
+    return (text.length > limit) ? true : false;
+}
+
+const showEmptyTitleError = () => {
+    errorMessage.innerText = ERROR_EMPTY_TITLE;
+    newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
+    newPostNode.appendChild(errorMessage);
+}
+const showMuchTextTitleError = () => {
+    errorMessage.innerText = ERROR_LARGE_TITLE;
+    newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
+    newPostNode.appendChild(errorMessage);
+}
+const showEmptyTextError = () => {
+    errorMessage.innerText = ERROR_EMPTY_TEXTAREA;
+    newPostTitleInputNode.classList.remove(ERROR_CLASSNAME);
+    newPostTextNode.classList.add(ERROR_CLASSNAME);
+    newPostNode.appendChild(errorMessage);
+}
+const showMuchTextareaError = () => {
+    errorMessage.innerText = ERROR_LARGE_TEXTAREA;
+    newPostTextNode.classList.add(ERROR_CLASSNAME);
+    newPostNode.appendChild(errorMessage);
+}
 const clearOldError = () => {
     newPostTextNode.classList.remove(ERROR_CLASSNAME);
     newPostTitleInputNode.classList.remove(ERROR_CLASSNAME);
@@ -87,31 +112,27 @@ const clearOldError = () => {
 
 const isPostCorrect = (title, text) => {
     clearOldError();
+
     if (isFieldEmpty(title)) {
-        errorMessage.innerText = ERROR_EMPTY_TITLE;
-        newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
-        newPostNode.appendChild(errorMessage);
+        showEmptyTitleError()
         return false
     }
-    if (title.length > TITLE_VALIDATION_LIMIT) {
-        errorMessage.innerText = ERROR_LARGE_TITLE;
-        newPostTitleInputNode.classList.add(ERROR_CLASSNAME);
-        newPostNode.appendChild(errorMessage);
+
+    if ( isTextMoreLimit(title, TITLE_VALIDATION_LIMIT) ) {
+        showMuchTextTitleError();
         return false
     }
+
     if (isFieldEmpty(text)) {
-        errorMessage.innerText = ERROR_EMPTY_TEXTAREA;
-        newPostTitleInputNode.classList.remove(ERROR_CLASSNAME);
-        newPostTextNode.classList.add(ERROR_CLASSNAME);
-        newPostNode.appendChild(errorMessage);
+        showEmptyTextError();
         return false
     }
-    if (text.length > TEXTAREA_VALIDATION_LIMIT) {
-        errorMessage.innerText = ERROR_LARGE_TEXTAREA;
-        newPostTextNode.classList.add(ERROR_CLASSNAME);
-        newPostNode.appendChild(errorMessage);
+
+    if ( isTextMoreLimit(text, TEXTAREA_VALIDATION_LIMIT) ) {
+        showMuchTextareaError();
         return false
     }
+
     return true;
 }
 
