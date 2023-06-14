@@ -1,3 +1,4 @@
+const STORAGE_LABEL_POSTS = 'posts';
 const ERROR_EMPTY_TITLE = 'Empty title name!';
 const ERROR_EMPTY_TEXTAREA = 'Empty textarea!';
 const ERROR_LARGE_TITLE = 'The title is more than 100 characters';
@@ -8,8 +9,6 @@ const EMPTY_POSTLIST_MESSAGE = 'Empty';
 const TITLE_VALIDATION_LIMIT = 100;
 const TEXTAREA_VALIDATION_LIMIT = 200;
 
-const posts = [];
-
 const newPostNode = document.getElementById('newPost')
 const newPostTitleInputNode = document.getElementById('newPostTitleInput');
 const newPostTextNode = document.getElementById('newPostText');
@@ -18,6 +17,26 @@ const postsNode = document.getElementById('posts');
 
 const errorMessage = document.createElement('p');
 errorMessage.className = ERROR_CLASSNAME_COLOR;
+
+let posts = [];
+
+const initPosts = () => {
+    if (Array.isArray(getPostsFromStorage())) {
+        posts = getPostsFromStorage();
+    }
+    renderPosts();
+}
+
+const savePostsToStorage = () => {
+    const postsString = JSON.stringify(getPosts());
+    localStorage.setItem(STORAGE_LABEL_POSTS, postsString);
+}
+
+const getPostsFromStorage = () => {
+    const postsFromStorageString = localStorage.getItem(STORAGE_LABEL_POSTS);
+    const postsFromStorage = JSON.parse(postsFromStorageString);
+    return postsFromStorage;
+}
 
 const isNumLessTen = (num) => {
     return num < 10;
@@ -96,7 +115,7 @@ const isPostCorrect = (title, text) => {
     return true;
 }
 
-const renderPosts = () => {
+function renderPosts () {
     if (postsNode.innerText == EMPTY_POSTLIST_MESSAGE) postsNode.innerText = '';
 
     let postsHTML = '';
@@ -136,10 +155,14 @@ const newPostHandler = () => {
     }
 
     addPost(postFromUser);
+    savePostsToStorage();
+
     renderPosts();
     clearOldData();
 
 }
+
+initPosts();
 
 newPostBtnNode.addEventListener('click', newPostHandler);
 
